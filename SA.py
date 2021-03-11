@@ -37,5 +37,8 @@ class SA:
             if dy > 0 or np.exp(dy/t) > np.random.rand():
                 p_x.append(new_x)
                 p_y.append(new_y)
+            else:
+                p_x.append(p_x[-1])
+                p_y.append(p_y[-1])
             p_t.append(t)
         return {'x': p_x, 'y': p_y, 't': p_t}
