@@ -19,20 +19,23 @@ class SA:
 
     def run(self):
         t = self.t_max
-
+        scale = np.sqrt(self.t_max)
         p_x, p_y, p_t = [], [], []
         initial_x = np.random.uniform(0, 25)
         initial_y = self.hill_function(initial_x)
         p_x.append(initial_x)
         p_y.append(initial_y)
+        p_t.append(t)
 
         while(t > self.t_min):
-            p_t.append(t)
-            new_x = np.random.uniform(0, 25)
+            t = t-self.dt
+            new_x = self.min_x - 1
+            while(new_x < self.min_x or new_x > self.max_x):
+                new_x = p_x[-1] + np.random.uniform(-1, 1)*scale
             new_y = self.hill_function(new_x)
             dy = new_y - p_y[-1]
             if dy > 0 or np.exp(dy/t) > np.random.rand():
                 p_x.append(new_x)
                 p_y.append(new_y)
-            t = t-self.dt
+            p_t.append(t)
         return {'x': p_x, 'y': p_y, 't': p_t}

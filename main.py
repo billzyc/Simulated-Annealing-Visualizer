@@ -9,9 +9,9 @@ from SA import SA
 def main():
 
     min_x, max_x = 0, 30
-    t_max = 1000
-    t_min = 0
-    dt = 0.05
+    t_max = 100
+    t_min = 0.01
+    dt = 0.1
     fig, ax = plt.subplots()
 
     annealer = SA(min_x, max_x, t_max, t_min, dt)
